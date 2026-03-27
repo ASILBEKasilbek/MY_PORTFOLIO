@@ -1,0 +1,427 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Asilbek Sadullayev - Backend dasturchi, Django va Python mutaxassisi">
+  <meta name="keywords" content="Django, Python, Backend Developer, Portfolio">
+  <title>Asilbek Sadullayev | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{inter:["Inter","sans-serif"]}}}}</script>
+  <style>
+    *{scroll-behavior:smooth}
+    body{font-family:"Inter",sans-serif;background:#0f172a;color:#e2e8f0;overflow-x:hidden}
+    .grad-text{background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .glass{background:rgba(30,41,59,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(99,102,241,.15)}
+    .nav-bg{background:rgba(15,23,42,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(99,102,241,.1)}
+    .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.12;animation:blobAnim 9s ease-in-out infinite}
+    @keyframes blobAnim{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(25px,-25px) scale(1.06)}66%{transform:translate(-20px,15px) scale(.94)}}
+    .profile-ring{background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);padding:3px;border-radius:50%}
+    .skill-fill{background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:999px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+    .proj-card{transition:transform .3s ease,box-shadow .3s ease}
+    .proj-card:hover{transform:translateY(-8px);box-shadow:0 25px 50px rgba(99,102,241,.22)}
+    .proj-card .ov{opacity:0;transition:opacity .3s;background:linear-gradient(to top,rgba(99,102,241,.92),transparent)}
+    .proj-card:hover .ov{opacity:1}
+    .nav-link{position:relative;color:#94a3b8;transition:color .3s}
+    .nav-link::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:linear-gradient(90deg,#6366f1,#8b5cf6);transition:width .3s;border-radius:999px}
+    .nav-link:hover,.nav-link.act{color:#e2e8f0}
+    .nav-link:hover::after,.nav-link.act::after{width:100%}
+    .btn-p{background:linear-gradient(135deg,#6366f1,#8b5cf6);transition:transform .2s,box-shadow .2s,opacity .2s}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(99,102,241,.4);opacity:.95}
+    .btn-o{border:1.5px solid #6366f1;color:#6366f1;transition:all .2s}
+    .btn-o:hover{background:#6366f1;color:#fff;transform:translateY(-2px)}
+    .inp{background:rgba(51,65,85,.5);border:1px solid rgba(99,102,241,.2);transition:border-color .3s,box-shadow .3s;color:#e2e8f0}
+    .inp:focus{outline:none;border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15)}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.on{opacity:1;transform:translateY(0)}
+    .tag{background:rgba(99,102,241,.15);color:#a5b4fc;border:1px solid rgba(99,102,241,.2);padding:4px 12px;border-radius:999px;font-size:13px;font-weight:500}
+    .sdiv{width:60px;height:4px;background:linear-gradient(90deg,#6366f1,#8b5cf6);border-radius:999px;margin:12px auto 0}
+    #mob-menu{max-height:0;overflow:hidden;opacity:0;transition:max-height .3s,opacity .3s}
+    #mob-menu.op{max-height:320px;opacity:1}
+    .soc{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(30,41,59,.9);border:1px solid rgba(99,102,241,.2);color:#94a3b8;font-size:18px;transition:all .3s;text-decoration:none}
+    .soc:hover{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-color:transparent;color:#fff;transform:translateY(-4px);box-shadow:0 10px 20px rgba(99,102,241,.3)}
+    #scrolltop{opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;transform:translateY(20px)}
+    #scrolltop.on{opacity:1;pointer-events:auto;transform:translateY(0)}
+    .cursor{display:inline-block;width:3px;height:1em;background:#6366f1;margin-left:4px;animation:blink .8s step-end infinite;vertical-align:text-bottom}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    @keyframes sdot{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}
+    .grid-bg{background-image:linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px);background-size:50px 50px}
+    .glow-ring{box-shadow:0 0 40px rgba(99,102,241,.2)}
+  </style>
+</head>
+<body class="font-inter">
+
+<!-- NAVBAR -->
+<nav class="nav-bg fixed top-0 w-full z-50 py-4">
+  <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+    <a href="#home" class="text-xl font-bold grad-text tracking-tight">AS.dev</a>
+    <ul class="hidden md:flex gap-8 items-center">
+      <li><a href="#home" class="nav-link text-sm font-medium">Bosh sahifa</a></li>
+      <li><a href="#about" class="nav-link text-sm font-medium">Men haqimda</a></li>
+      <li><a href="#skills" class="nav-link text-sm font-medium">Ko'nikmalar</a></li>
+      <li><a href="#projects" class="nav-link text-sm font-medium">Loyihalar</a></li>
+      <li><a href="#contact" class="nav-link text-sm font-medium">Aloqa</a></li>
+    </ul>
+    <a href="#contact" class="hidden md:inline-flex btn-p text-white text-sm font-semibold px-5 py-2.5 rounded-xl">Bog'lanish</a>
+    <button id="menu-btn" class="md:hidden text-slate-400 hover:text-white p-2 rounded-lg" aria-label="Menu">
+      <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+    </button>
+  </div>
+  <div id="mob-menu" class="md:hidden px-6 pt-2 pb-4 bg-slate-900/95 border-t border-slate-800 mt-2">
+    <ul class="flex flex-col gap-2">
+      <li><a href="#home" class="block py-2 text-slate-300 hover:text-white text-sm font-medium" onclick="closeMob()">Bosh sahifa</a></li>
+      <li><a href="#about" class="block py-2 text-slate-300 hover:text-white text-sm font-medium" onclick="closeMob()">Men haqimda</a></li>
+      <li><a href="#skills" class="block py-2 text-slate-300 hover:text-white text-sm font-medium" onclick="closeMob()">Ko'nikmalar</a></li>
+      <li><a href="#projects" class="block py-2 text-slate-300 hover:text-white text-sm font-medium" onclick="closeMob()">Loyihalar</a></li>
+      <li><a href="#contact" class="block py-2 text-slate-300 hover:text-white text-sm font-medium" onclick="closeMob()">Aloqa</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center relative overflow-hidden pt-20 grid-bg">
+  <div class="blob w-96 h-96 bg-indigo-500 top-10 -left-20"></div>
+  <div class="blob w-80 h-80 bg-purple-500 bottom-20 right-10" style="animation-delay:-3s"></div>
+  <div class="blob w-64 h-64 bg-pink-500 top-1/2 left-1/2" style="animation-delay:-6s"></div>
+  <div class="max-w-6xl mx-auto px-6 w-full relative z-10">
+    <div class="flex flex-col md:flex-row items-center gap-12 py-16">
+      <div class="flex-1 text-center md:text-left">
+        <div class="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium px-4 py-2 rounded-full mb-6">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Ishlashga tayyor
+        </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4">
+          Salom, men<br><span class="grad-text">Asilbek</span>
+        </h1>
+        <p class="text-slate-400 text-lg md:text-xl mb-2 font-medium h-8">
+          <span id="typing"></span><span class="cursor"></span>
+        </p>
+        <p class="text-slate-400 text-base max-w-lg mx-auto md:mx-0 mt-4 mb-8 leading-relaxed">
+          Samarali va xavfsiz backend yechimlar yarataman. Django, Python, REST API va Telegram botlar ishlab chiqishda tajribam bor.
+        </p>
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
+          <a href="#projects" class="btn-p text-white font-semibold px-7 py-3 rounded-xl inline-flex items-center gap-2">
+            <i class="fa-solid fa-folder-open text-sm"></i> Loyihalar
+          </a>
+          <a href="#contact" class="btn-o font-semibold px-7 py-3 rounded-xl inline-flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane text-sm"></i> Bog'lanish
+          </a>
+        </div>
+        <div class="flex gap-3 justify-center md:justify-start mt-8">
+          <a href="https://github.com/ASILBEKasilbek" target="_blank" rel="noopener" class="soc" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/asilbek-sadullayev-4066a3333/" target="_blank" rel="noopener" class="soc" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://t.me/dasturch1_asilbek" target="_blank" rel="noopener" class="soc" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.upwork.com/freelancers/~01b6f006f65cc81bac" target="_blank" rel="noopener" class="soc" title="Upwork"><i class="fa-solid fa-briefcase"></i></a>
+          <a href="https://instagram.com/new_digital_world_uz" target="_blank" rel="noopener" class="soc" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="flex-shrink-0 reveal">
+        <div class="profile-ring glow-ring">
+          <div class="bg-slate-900 rounded-full p-1">
+            <img src="{% static 'images/profile.jpg' %}"
+                 onerror="this.src='https://ui-avatars.com/api/?name=Asilbek+Sadullayev&background=6366f1&color=fff&size=300&bold=true'"
+                 alt="Asilbek Sadullayev"
+                 class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 text-xs">
+    <span>Pastga aylantiring</span>
+    <div class="w-5 h-9 border-2 border-slate-700 rounded-full flex items-start justify-center p-1">
+      <div class="w-1 h-2 bg-indigo-400 rounded-full" style="animation:sdot 2s ease infinite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="py-14 border-y border-slate-800/60">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="reveal"><div class="text-4xl font-bold grad-text mb-1">2+</div><div class="text-slate-500 text-sm">Yil tajriba</div></div>
+      <div class="reveal" style="transition-delay:.1s"><div class="text-4xl font-bold grad-text mb-1">15+</div><div class="text-slate-500 text-sm">Loyihalar</div></div>
+      <div class="reveal" style="transition-delay:.2s"><div class="text-4xl font-bold grad-text mb-1">10+</div><div class="text-slate-500 text-sm">Mijozlar</div></div>
+      <div class="reveal" style="transition-delay:.3s"><div class="text-4xl font-bold grad-text mb-1">100%</div><div class="text-slate-500 text-sm">Sifat</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="tag">Men haqimda</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-4 mb-2">Kim men?</h2>
+      <div class="sdiv"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <h3 class="text-2xl font-bold mb-4 text-white">Backend Dasturchi &amp; API Mutaxassisi</h3>
+        <p class="text-slate-400 leading-relaxed mb-5">
+          Men <strong class="text-indigo-400">Django</strong> va <strong class="text-indigo-400">Python</strong> texnologiyalarida ixtisoslashgan backend dasturchi.
+          Web dasturlar, REST API va Telegram botlar ishlab chiqishda 2+ yil tajribaga egaman.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-8">
+          Maqsadim &mdash; <span class="text-white font-medium">ishonchli, tezkor va optimallashtirilgan</span> backend yechimlarini taqdim etish.
+          Har bir proyektda kod sifati va xavfsizligiga alohida e'tibor beraman.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="tag">Python</span><span class="tag">Django</span><span class="tag">REST API</span>
+          <span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Telegram Bot</span>
+          <span class="tag">Git</span><span class="tag">Linux</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay:.15s">
+        <div class="glass rounded-2xl p-6 glow-ring">
+          <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-brands fa-python text-2xl text-indigo-400"></i>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Python</h4>
+          <p class="text-slate-400 text-sm">2+ yil tajriba</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-solid fa-server text-2xl text-purple-400"></i>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Backend</h4>
+          <p class="text-slate-400 text-sm">Django, DRF, FastAPI</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-solid fa-database text-2xl text-pink-400"></i>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Ma'lumotlar bazasi</h4>
+          <p class="text-slate-400 text-sm">PostgreSQL, SQLite</p>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4">
+            <i class="fa-brands fa-telegram text-2xl text-green-400"></i>
+          </div>
+          <h4 class="font-semibold text-white mb-1">Telegram Botlar</h4>
+          <p class="text-slate-400 text-sm">Aiogram, Pyrogram</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-24 bg-slate-900/40 border-y border-slate-800/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="tag">Ko'nikmalar</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-4 mb-2">Texnik ko'nikmalarim</h2>
+      <div class="sdiv"></div>
+    </div>
+    <div class="max-w-3xl mx-auto space-y-7">
+      {% for skill in skills %}
+      <div class="reveal" style="transition-delay:{{ forloop.counter0 }}00ms">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-white font-semibold">{{ skill.title }}</span>
+          <span class="text-indigo-400 font-bold text-sm">{{ skill.percent }}%</span>
+        </div>
+        <div class="h-2.5 bg-slate-800 rounded-full overflow-hidden">
+          <div class="skill-fill h-full" data-w="{{ skill.percent }}"></div>
+        </div>
+      </div>
+      {% empty %}
+      <p class="text-slate-500 text-center py-8">Ko'nikmalar admin paneldan qo'shiladi</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="tag">Loyihalar</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-4 mb-2">So'nggi loyihalarim</h2>
+      <div class="sdiv"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% for project in projects %}
+      <div class="proj-card glass rounded-2xl overflow-hidden reveal" style="transition-delay:{{ forloop.counter0 }}00ms">
+        <div class="relative overflow-hidden h-52">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+          <div class="ov absolute inset-0 flex items-end p-5">
+            {% if project.link %}
+            <a href="{{ project.link }}" target="_blank" rel="noopener"
+               class="btn-p text-white text-sm font-semibold px-4 py-2 rounded-xl inline-flex items-center gap-2">
+              <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i> Ko'rish
+            </a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-white mb-2">{{ project.title }}</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">{{ project.content|truncatewords:20 }}</p>
+          {% if project.link %}
+          <a href="{{ project.link }}" target="_blank" rel="noopener"
+             class="inline-flex items-center gap-1.5 text-indigo-400 text-sm font-medium mt-4 hover:text-indigo-300 transition">
+            Loyihani ko'rish <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-span-3 text-center py-20">
+        <i class="fa-solid fa-folder-open text-6xl text-slate-700 mb-5 block"></i>
+        <p class="text-slate-500">Admin paneldan loyihalar qo'shing</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 bg-slate-900/40 border-t border-slate-800/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <span class="tag">Aloqa</span>
+      <h2 class="text-3xl md:text-5xl font-bold mt-4 mb-2">Bog'laning</h2>
+      <div class="sdiv"></div>
+      <p class="text-slate-400 mt-5 max-w-xl mx-auto">Yangi loyiha yoki hamkorlik bo'yicha savollaringiz bo'lsa &mdash; men doim muloqotga tayyorman.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <div class="space-y-4 reveal">
+        <a href="tel:+998908968807" class="glass rounded-2xl p-5 flex items-center gap-4 group hover:border-indigo-500/40 transition block">
+          <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-500/30 transition">
+            <i class="fa-solid fa-phone text-indigo-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs mb-0.5">Telefon</p>
+            <p class="text-white font-semibold">+998 90 896 88 07</p>
+          </div>
+        </a>
+        <a href="mailto:asilbek.sadullayev000@gmail.com" class="glass rounded-2xl p-5 flex items-center gap-4 group hover:border-indigo-500/40 transition block">
+          <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/30 transition">
+            <i class="fa-solid fa-envelope text-purple-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs mb-0.5">Email</p>
+            <p class="text-white font-semibold text-sm">asilbek.sadullayev000@gmail.com</p>
+          </div>
+        </a>
+        <div class="glass rounded-2xl p-5 flex items-center gap-4">
+          <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-location-dot text-pink-400"></i>
+          </div>
+          <div>
+            <p class="text-slate-500 text-xs mb-0.5">Manzil</p>
+            <p class="text-white font-semibold">Toshkent, O'zbekiston</p>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <p class="text-slate-500 text-xs mb-4">Ijtimoiy tarmoqlar</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://github.com/ASILBEKasilbek" target="_blank" rel="noopener" class="soc" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/asilbek-sadullayev-4066a3333/" target="_blank" rel="noopener" class="soc" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://t.me/dasturch1_asilbek" target="_blank" rel="noopener" class="soc" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+            <a href="https://www.upwork.com/freelancers/~01b6f006f65cc81bac" target="_blank" rel="noopener" class="soc" title="Upwork"><i class="fa-solid fa-briefcase"></i></a>
+            <a href="https://instagram.com/new_digital_world_uz" target="_blank" rel="noopener" class="soc" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="glass rounded-2xl p-8">
+          <h3 class="text-xl font-bold text-white mb-6">Xabar yuboring</h3>
+          {% if messages %}
+          <div class="bg-green-500/10 border border-green-500/30 text-green-400 rounded-xl px-4 py-3 mb-5 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-circle-check"></i>
+            {% for msg in messages %}{{ msg }}{% endfor %}
+          </div>
+          {% endif %}
+          <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+              <label class="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">Ismingiz</label>
+              <input type="text" name="name" placeholder="Ismingiz" required
+                     class="inp w-full px-4 py-3 rounded-xl text-sm placeholder-slate-600">
+            </div>
+            <div>
+              <label class="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">Email</label>
+              <input type="email" name="email" placeholder="email@example.com" required
+                     class="inp w-full px-4 py-3 rounded-xl text-sm placeholder-slate-600">
+            </div>
+            <div>
+              <label class="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wide">Xabar</label>
+              <textarea name="message" rows="5" placeholder="Xabaringizni yozing..." required
+                        class="inp w-full px-4 py-3 rounded-xl text-sm placeholder-slate-600 resize-none"></textarea>
+            </div>
+            <button type="submit"
+                    class="btn-p w-full text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane text-sm"></i> Yuborish
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-8 border-t border-slate-800/60">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm">
+    <p class="text-slate-500">&copy; 2025 <span class="grad-text font-semibold">Asilbek Sadullayev</span>. Barcha huquqlar himoyalangan.</p>
+    <p class="text-slate-700">Django &amp; Python bilan yaratildi <i class="fa-solid fa-heart text-red-500/70 mx-1"></i></p>
+  </div>
+</footer>
+
+<button id="scrolltop" onclick="scrollTo({top:0,behavior:'smooth'})"
+        class="fixed bottom-8 right-8 w-12 h-12 btn-p text-white rounded-xl flex items-center justify-center shadow-lg z-50" aria-label="Tepaga">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+const phrases=["Backend Dasturchi","Django Mutaxassisi","Python Ishqibozi","REST API Yaratuvchi","Telegram Bot Developer"];
+let pi=0,ci=0,del=false;
+const tel=document.getElementById("typing");
+function type(){
+  const c=phrases[pi];
+  tel.textContent=del?c.slice(0,ci-1):c.slice(0,ci+1);
+  del?ci--:ci++;
+  if(!del&&ci===c.length){del=true;setTimeout(type,2000);}
+  else if(del&&ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(type,500);}
+  else{setTimeout(type,del?55:100);}
+}
+type();
+
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('on'),i*80);});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=e.target.dataset.w+'%';sio.unobserve(e.target);}});
+},{threshold:0.4});
+document.querySelectorAll('.skill-fill').forEach(b=>sio.observe(b));
+
+const mbtn=document.getElementById('menu-btn'),mmenu=document.getElementById('mob-menu'),micon=document.getElementById('menu-icon');
+let mopen=false;
+mbtn.addEventListener('click',()=>{
+  mopen=!mopen;
+  mmenu.classList.toggle('op',mopen);
+  micon.className=mopen?'fa-solid fa-xmark text-xl':'fa-solid fa-bars text-xl';
+});
+function closeMob(){mopen=false;mmenu.classList.remove('op');micon.className='fa-solid fa-bars text-xl';}
+window.addEventListener('scroll',closeMob);
+
+const stb=document.getElementById('scrolltop');
+window.addEventListener('scroll',()=>stb.classList.toggle('on',scrollY>400));
+
+const secs=document.querySelectorAll('section[id]'),nls=document.querySelectorAll('.nav-link');
+const nio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)nls.forEach(l=>{l.classList.toggle('act',l.getAttribute('href')==='#'+e.target.id);});});
+},{threshold:0.45});
+secs.forEach(s=>nio.observe(s));
+</script>
+</body>
+</html>

@@ -25,6 +25,44 @@
                 width: 0ch;
             }
         }
+        .hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-effect:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease forwards;
+        }
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s ease forwards;
+        }
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white font-sans">
@@ -47,25 +85,25 @@
     </nav>
 
     <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <img src="/static/images/profile.jpg" onerror="this.src='/static/images/default.jpg'" alt="Asilbek" class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg">
+        <img src="/static/images/profile.jpg" onerror="this.src='/static/images/default.jpg'" alt="Asilbek" class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg hover-effect">
         <h1 class="text-3xl sm:text-5xl font-bold mt-4 nima">Asilbek Sadullayev</h1>
         <p class="text-gray-400 text-lg sm:text-xl mt-2">Backend Dasturchi | Django & Python Mutaxassisi</p>
         <p class="text-gray-300 text-md sm:text-lg mt-2 max-w-xl">Samarali va xavfsiz backend yechimlar yarataman. Web platformalar va Telegram botlar ishlab chiqishda tajribam bor.</p>
     </section>
     
     <section id="about" class="py-16 px-4 text-center">
-        <h2 class="text-2xl sm:text-4xl font-semibold mb-4">Men Haqimda</h2>
-        <p class="max-w-2xl mx-auto text-gray-300 text-lg">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-4 slide-in-left">Men Haqimda</h2>
+        <p class="max-w-2xl mx-auto text-gray-300 text-lg slide-in-right">
             Backend dasturchi sifatida <strong>Django</strong> va <strong>Python</strong> texnologiyalarida ixtisoslashganman. Web dasturlar, Telegram botlar va API xizmatlarini yaratishda tajribaga egaman.  
             Mening maqsadim – <span class="text-green-400 font-semibold">ishonchli, tezkor va optimallashtirilgan</span> backend yechimlarini taqdim etish.
         </p>
     </section>
     
     <section id="skills" class="py-16 px-4 text-center">
-        <h2 class="text-2xl sm:text-4xl font-semibold mb-6">Qobilyatlarim</h2>
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left">Qobilyatlarim</h2>
         <div class="max-w-2xl mx-auto space-y-6">
             {% for skill in skills %}
-                <div class="text-left">
+                <div class="text-left fade-in">
                     <div class="flex justify-between text-lg text-gray-300">
                         <span class="font-semibold">{{ skill.title }}</span>
                         <span class="font-semibold">{{ skill.percent }}%</span>
@@ -79,10 +117,10 @@
     </section>
 
     <section id="projects" class="py-16 px-4 text-center">
-        <h2 class="text-2xl sm:text-4xl font-semibold mb-6">Loyihalarim</h2>
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left">Loyihalarim</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {% for project in projects %}
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md transform transition duration-300 hover:scale-105 hover:shadow-xl">
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md hover-effect fade-in">
                     <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover rounded-md">
                     <h3 class="text-xl font-semibold mt-4">{{ project.title }}</h3>
                     <p class="text-gray-400 mt-2">{{ project.content|truncatewords:15 }}</p>
@@ -94,19 +132,18 @@
         </div>
     </section>
 
-
     <section id="contact" class="py-16 px-4 text-center bg-gray-900 text-white">
-        <h2 class="text-2xl sm:text-4xl font-semibold mb-6">Aloqa</h2>
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left">Aloqa</h2>
         
         <!-- Kontakt ma'lumotlari -->
-        <div class="max-w-lg mx-auto space-y-4">
+        <div class="max-w-lg mx-auto space-y-4 fade-in">
             <a href="tel:+998908968807" class="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-400 transition inline-block">📞 Telefon</a>
             <a href="mailto:asilbek.sadullayev000@example.com" class="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-400 transition inline-block">✉️ Email</a>
             <p class="text-gray-300 mt-2"><strong>📍 Manzil:</strong> Toshkent, O‘zbekiston</p>
         </div>
         
         <!-- Ijtimoiy tarmoqlar bo'limi -->
-        <div class="flex justify-center space-x-6 mt-6 text-yellow-500 text-3xl">
+        <div class="flex justify-center space-x-6 mt-6 text-yellow-500 text-3xl fade-in">
             <a href="https://www.linkedin.com/in/asilbek-sadullayev-4066a3333/" class="hover:text-yellow-400 transition transform hover:scale-125">
                 <i class="fa-brands fa-linkedin"></i>
             </a>
@@ -126,9 +163,9 @@
         
         <!-- Kontakt formasi -->
         <section class="py-16 px-4 text-center bg-gray-900 text-white">
-            <h2 class="text-2xl sm:text-4xl font-semibold mb-6">Xabar qoldiring</h2>
+            <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left">Xabar qoldiring</h2>
         
-            <form method="post" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+            <form method="post" class="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg hover-effect fade-in">
                 {% csrf_token %}
                 <div class="mb-4">
                     <input type="text" name="name" placeholder="Ismingiz" class="w-full p-2 rounded bg-gray-700 text-white" required>
@@ -146,7 +183,7 @@
         </section>
         
         <!-- Google Maps -->
-        <div class="mt-10 max-w-lg mx-auto">
+        <div class="mt-10 max-w-lg mx-auto fade-in">
             <h3 class="text-xl font-semibold mb-4">Manzil</h3>
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.6761964771264!2d69.24007457582955!3d41.33852597130396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef3baf7b0eac3%3A0x6d8f7e6d70f1b2b3!2sTashkent!5e0!3m2!1sen!2s!4v1642991824562!5m2!1sen!2s" 
@@ -154,7 +191,6 @@
             </iframe>
         </div>
     </section>
-    
 
     <!-- Font Awesome yangi versiyasini yuklash -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>

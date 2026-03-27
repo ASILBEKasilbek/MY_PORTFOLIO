@@ -1,0 +1,258 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asilbek Sadullayev - Backend dasturchi, Django va Python mutaxassisi">
+    <meta name="keywords" content="Django, Python, Backend Developer, Portfolio">
+    <title>Asilbek Sadullayev | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', '{% static "particles.json" %}', function() {
+    console.log("Particles.js yuklandi!");
+});
+    </script>
+    <style>
+        /* Gradient fon */
+        body {    
+            background: linear-gradient(135deg, #1a1a1a, #0d0d0d, #003366);
+            color: #ffffff;
+        }
+
+        /* Neon effektlari */
+        .neon-text {
+            text-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa, 0 0 20px #00ffaa;
+        }
+
+        .neon-border {
+            border: 2px solid #00ffaa;
+            box-shadow: 0 0 5px #00ffaa, 0 0 10px #00ffaa, inset 0 0 5px #00ffaa;
+        }
+
+        /* Hover effektlari */
+        .hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-effect:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 170, 0.3);
+        }
+
+        /* Animatsiyalar */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease forwards;
+        }
+        @keyframes slideInLeft {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s ease forwards;
+        }
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Particle.js uchun konteyner */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .nima{
+            width: 20ch;
+            font-family: monospace;
+            text-wrap: nowrap;
+            overflow: hidden;
+            animation: typing 2s steps(20) infinite alternate-reverse
+        }
+        @keyframes typing {
+            from {
+                width: 0ch;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Particle.js fon animatsiyasi -->
+    <div id="particles-js"></div>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full bg-gray-900 bg-opacity-75 shadow-lg py-4 z-50">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <h1 class="text-xl font-bold neon-text">Asilbek</h1>
+            <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <ul id="menu" class="hidden md:flex space-x-6 text-lg absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-gray-900 md:bg-transparent p-6 md:p-0 shadow-lg md:shadow-none">
+                <li><a href="#home" class="hover:text-green-400 transition">Bosh Sahifa</a></li>
+                <li><a href="#about" class="hover:text-green-400 transition">Men Haqimda</a></li>
+                <li><a href="#skills" class="hover:text-green-400 transition">Qobilyatlarim</a></li>
+                <li><a href="#projects" class="hover:text-green-400 transition">Loyihalarim</a></li>
+                <li><a href="#contact" class="hover:text-green-400 transition">Aloqa</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Bo'limi -->
+    <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4 relative">
+        <img src="/static/profile.jpg" onerror="this.src='/static/profile.jpg'" alt="Asilbek" class="w-32 h-32 md:w-40 md:h-40 rounded-full neon-border hover-effect">
+        <h1 class="text-3xl sm:text-5xl font-bold mt-4 neon-text nima">Asilbek Sadullayev</h1>
+        <p class="text-gray-400 text-lg sm:text-xl mt-2">Backend Dasturchi | Django & Python Mutaxassisi</p>
+        <p class="text-gray-300 text-md sm:text-lg mt-2 max-w-xl">Samarali va xavfsiz backend yechimlar yarataman. Web platformalar va Telegram botlar ishlab chiqishda tajribam bor.</p>
+    </section>
+
+    <!-- Men Haqimda Bo'limi -->
+    <section id="about" class="py-16 px-4 text-center">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-4 slide-in-left neon-text">Men Haqimda</h2>
+        <p class="max-w-2xl mx-auto text-gray-300 text-lg slide-in-right">
+            Backend dasturchi sifatida <strong>Django</strong> va <strong>Python</strong> texnologiyalarida ixtisoslashganman. Web dasturlar, Telegram botlar va API xizmatlarini yaratishda tajribaga egaman.  
+            Mening maqsadim – <span class="text-green-400 font-semibold">ishonchli, tezkor va optimallashtirilgan</span> backend yechimlarini taqdim etish.
+        </p>
+    </section>
+
+    <!-- Qobilyatlarim Bo'limi -->
+    <section id="skills" class="py-16 px-4 text-center">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left neon-text">Qobilyatlarim</h2>
+        <div class="max-w-2xl mx-auto space-y-6">
+            {% for skill in skills %}
+                <div class="text-left fade-in">
+                    <div class="flex justify-between text-lg text-gray-300">
+                        <span class="font-semibold">{{ skill.title }}</span>
+                        <span class="font-semibold">{{ skill.percent }}%</span>
+                    </div>
+                    <div class="w-full bg-gray-700 rounded-full h-4 mt-2">
+                        <div class="bg-green-400 h-4 rounded-full" style="width: {{ skill.percent }}%;"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Loyihalarim Bo'limi -->
+    <section id="projects" class="py-16 px-4 text-center">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left neon-text">Loyihalarim</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {% for project in projects %}
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md hover-effect fade-in">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">{{ project.title }}</h3>
+                    <p class="text-gray-400 mt-2">{{ project.content|truncatewords:15 }}</p>
+                    {% if project.link %}
+                        <a href="{{ project.link }}" class="mt-4 inline-block text-green-400 hover:text-green-300 transition">Ko‘rish →</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Aloqa Bo'limi -->
+    <section id="contact" class="py-16 px-4 text-center bg-gray-900 text-white">
+        <h2 class="text-2xl sm:text-4xl font-semibold mb-6 slide-in-left neon-text">Aloqa</h2>
+        
+        <!-- Kontakt ma'lumotlari -->
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Kontakt ma'lumotlari -->
+            <div class="bg-gray-800 p-8 rounded-lg shadow-md hover-effect fade-in">
+                <h3 class="text-xl font-semibold mb-4">Kontakt Ma'lumotlari</h3>
+                <div class="space-y-4">
+                    <a href="tel:+998908968807" class="bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-300 transition inline-block w-full">📞 Telefon</a>
+                    <a href="mailto:asilbek.sadullayev000@example.com" class="bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-300 transition inline-block w-full">✉️ Email</a>
+                    <p class="text-gray-300"><strong>📍 Manzil:</strong> Toshkent, O‘zbekiston</p>
+                </div>
+            </div>
+    
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="bg-gradient-to-r from-green-400 to-blue-500 p-8 rounded-lg shadow-md hover-effect fade-in">
+                <h3 class="text-xl font-semibold mb-6">Ijtimoiy Tarmoqlar</h3>
+                <div class="flex justify-center space-x-10 text-white text-5xl">
+                    <a href="https://www.linkedin.com/in/asilbek-sadullayev-4066a3333/" class="hover:text-green-300 transition transform hover:scale-125">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/ASILBEKasilbek" class="hover:text-green-300 transition transform hover:scale-125">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://t.me/dasturch1_asilbek" class="hover:text-green-300 transition transform hover:scale-125">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/~01b6f006f65cc81bac" class="hover:text-green-300 transition transform hover:scale-125">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </a>
+                    <a href="https://instagram.com/new_digital_world_uz" class="hover:text-green-300 transition transform hover:scale-125">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="text-white mt-6 text-sm">Meni ijtimoiy tarmoqlarda kuzatib boring!</p>
+            </div>
+        </div>
+    
+        <!-- Kontakt formasi -->
+        <div class="max-w-4xl mx-auto mt-12">
+            <h3 class="text-xl font-semibold mb-4 slide-in-left neon-text">Xabar Qoldiring</h3>
+            <form method="post" class="bg-gray-800 p-8 rounded-lg shadow-md hover-effect fade-in">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <input type="text" name="name" placeholder="Ismingiz" class="w-full p-2 rounded bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <input type="email" name="email" placeholder="Email" class="w-full p-2 rounded bg-gray-700 text-white" required>
+                </div>
+                <div class="mb-4">
+                    <textarea name="message" placeholder="Xabaringiz" class="w-full p-2 rounded bg-gray-700 text-white" required></textarea>
+                </div>
+                <button type="submit" class="w-full bg-green-400 text-white py-2 rounded-md hover:bg-green-300 transition">
+                    Yuborish
+                </button>
+            </form>
+        </div>
+    
+        <!-- Google Maps -->
+        <div class="max-w-4xl mx-auto mt-12">
+            <h3 class="text-xl font-semibold mb-4 slide-in-left neon-text">Manzil</h3>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2995.6761964771264!2d69.24007457582955!3d41.33852597130396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef3baf7b0eac3%3A0x6d8f7e6d70f1b2b3!2sTashkent!5e0!3m2!1sen!2s!4v1642991824562!5m2!1sen!2s" 
+                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" class="rounded-lg shadow-md hover-effect fade-in">
+            </iframe>
+        </div>
+    </section>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script>
+        // GSAP animatsiyalari
+        gsap.from("#home img", { duration: 1, opacity: 0, scale: 0.5, delay: 0.5 });
+        gsap.from("#home h1", { duration: 1, opacity: 0, y: 50, delay: 1 });
+        gsap.from("#home p", { duration: 1, opacity: 0, y: 50, delay: 1.5 });
+
+        // Particle.js konfiguratsiyasi
+        particlesJS.load('particles-js', '{% static "particles.json" %}', function() {
+            console.log("Particles.js yuklandi!");
+        });
+
+        // Menu toggle
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>

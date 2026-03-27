@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asilbek Sadullayev - Tajribali Backend dasturchi, Django va Python mutaxassisi. Mening portfoliom orqali xizmatlarim bilan tanishing!">
+    <meta name="keywords" content="Django, Python, Backend Developer, Portfolio, Upwork Developer">
+    <title>Asilbek Sadullayev | Backend Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        .menu-open { display: block !important; }
+        .typing-effect {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid white;
+            animation: typing 3s steps(20) infinite alternate-reverse;
+        }
+        @keyframes typing {
+            from { width: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <nav class="fixed top-0 w-full bg-gray-800 bg-opacity-90 shadow-lg py-4 z-50">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <h1 class="text-xl font-bold text-yellow-500">Asilbek</h1>
+            <button id="menu-toggle" class="block md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" viewBox="0 0 24 24">
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <ul id="menu" class="hidden md:flex space-x-6 text-lg">
+                <li><a href="#home" class="hover:text-yellow-500">Bosh Sahifa</a></li>
+                <li><a href="#about" class="hover:text-yellow-500">Men Haqimda</a></li>
+                <li><a href="#projects" class="hover:text-yellow-500">Loyihalarim</a></li>
+                <li><a href="#contact" class="hover:text-yellow-500">Bog‘lanish</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="home" class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <img src="/static/images/profile.jpg" onerror="this.src='/static/images/default.jpg'" alt="Asilbek" class="w-32 h-32 md:w-40 md:h-40 rounded-full shadow-lg">
+        <h1 class="text-4xl font-bold mt-4 typing-effect">Asilbek Sadullayev</h1>
+        <p class="text-gray-400 text-lg mt-2">Backend Dasturchi | Django & Python</p>
+        <a href="#contact" class="mt-4 inline-block bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400">Menga Yozing</a>
+    </section>
+
+    <section id="projects" class="py-16 px-4 text-center">
+        <h2 class="text-3xl font-semibold mb-6">Loyihalarim</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {% for project in projects %}
+                <div class="bg-gray-800 p-6 rounded-lg shadow-md transform hover:scale-105 hover:shadow-xl transition">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover rounded-md">
+                    <h3 class="text-xl font-semibold mt-4">{{ project.title }}</h3>
+                    <p class="text-gray-400 mt-2">{{ project.content|truncatewords:15 }}</p>
+                    <a href="{{ project.link }}" class="mt-4 inline-block text-yellow-500 hover:text-yellow-400 transition">Live Demo →</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 px-4 text-center">
+        <h2 class="text-3xl font-semibold mb-6">Bog‘lanish</h2>
+        <p class="text-gray-400 mb-4">Mijoz sifatida hamkorlik qilishni istaysizmi? Men bilan bog‘laning!</p>
+        <a href="mailto:your-email@example.com" class="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400">Email Orqali Yozing</a>
+    </section>
+    
+    <script>
+        gsap.from("#projects .shadow-md", { duration: 1, opacity: 0, y: 50, stagger: 0.3 });
+        gsap.from("nav ul li", { duration: 1, opacity: 0, y: -50, stagger: 0.2 });
+        gsap.from("#home img", { duration: 1, opacity: 0, scale: 0.5 });
+        gsap.from("#home h1", { duration: 1, opacity: 0, y: 50, delay: 0.5 });
+
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("menu").classList.toggle("hidden");
+        });
+    </script>
+</body>
+</html>
