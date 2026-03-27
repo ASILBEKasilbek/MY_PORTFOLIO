@@ -10,7 +10,7 @@ packaging==24.2
 phonenumbers==8.13.54
 pillow==11.1.0
 psycopg==3.2.4
-psycopg2==2.9.10
+# psycopg2==2.9.10   <-- bu qatordan o‘chiriladi
 psycopg2-binary==2.9.10
 python-dotenv==1.0.1
 requests==2.32.3
