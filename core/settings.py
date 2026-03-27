@@ -24,6 +24,9 @@ DEBUG = env.bool("DEBUG", default=True)
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
+    "asilbeksadullayev.uz",
+    "www.asilbeksadullayev.uz",
+    "13.213.12.202",
     "asilbekasilbek.up.railway.app",
     ".railway.app"
 ]
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',  # Whitenoise
     'app',  # O'z ilovangiz
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
