@@ -1,9 +1,10 @@
+import json
 import requests
 import logging
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-from .models import Skills, Project, ContactMessage
+from .models import Skills, Project, ContactMessage, SiteSettings
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,9 @@ def send_telegram_message(name, email, message):
 def home(request):
     projects = Project.objects.all().order_by('-created_at')
     skills = Skills.objects.all().order_by('-percent')
+    site = SiteSettings.get_settings()
+    typing_phrases = [p.strip() for p in site.typing_phrases.split('\n') if p.strip()]
+    about_tags = [t.strip() for t in site.about_tags.split('\n') if t.strip()]
 
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
@@ -38,4 +42,11 @@ def home(request):
             messages.success(request, "Xabaringiz muvaffaqiyatli yuborildi! Tez orada bog'lanaman.")
             return redirect('home')
 
-    return render(request, 'home5.html', {'projects': projects, 'skills': skills})
+    return render(request, 'home5.html', {
+        'projects': projects,
+        'skills': skills,
+        'site': site,
+        'typing_phrases_json': json.dumps(typing_phrases),
+        'about_tags': about_tags,
+    })
+

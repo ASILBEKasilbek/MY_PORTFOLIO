@@ -22,6 +22,10 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from .sitemap import StaticViewSitemap
 
+admin.site.site_header = "Portfolio Admin"
+admin.site.site_title = "Portfolio"
+admin.site.index_title = "Boshqaruv paneli"
+
 sitemaps = {
     'static': StaticViewSitemap,
 }
