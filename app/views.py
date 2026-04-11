@@ -9,12 +9,12 @@ from .models import Skills, Project, ContactMessage, SiteSettings
 logger = logging.getLogger(__name__)
 
 
-def send_telegram_message(name, email, message):
+def send_telegram_message(name, phone, message):
     token = getattr(settings, 'TELEGRAM_BOT_TOKEN', '')
     chat_id = getattr(settings, 'TELEGRAM_CHAT_ID', '')
     if not token or not chat_id:
         return
-    text = f"📩 *Yangi xabar!*\n\n👤 *Ism:* {name}\n📧 *Email:* {email}\n📝 *Xabar:* {message}"
+    text = f"📩 *Yangi xabar!*\n\n👤 *Ism:* {name}\n📞 *Telefon:* {phone}\n📝 *Xabar:* {message}"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {"chat_id": chat_id, "text": text, "parse_mode": "Markdown"}
     try:
@@ -33,12 +33,12 @@ def home(request):
 
     if request.method == "POST":
         name = request.POST.get("name", "").strip()
-        email = request.POST.get("email", "").strip()
+        phone = request.POST.get("phone", "").strip()
         msg = request.POST.get("message", "").strip()
 
-        if name and email and msg:
-            ContactMessage.objects.create(name=name, email=email, message=msg)
-            send_telegram_message(name, email, msg)
+        if name and phone and msg:
+            ContactMessage.objects.create(name=name, phone=phone, message=msg)
+            send_telegram_message(name, phone, msg)
             messages.success(request, "Xabaringiz muvaffaqiyatli yuborildi! Tez orada bog'lanaman.")
             return redirect('home')
 
@@ -49,4 +49,19 @@ def home(request):
         'typing_phrases_json': json.dumps(typing_phrases),
         'about_tags': about_tags,
     })
+
+
+def resume(request):
+    skill_categories = [
+        {'name': 'Backend', 'icon': 'fa fa-server', 'skills': ['Python', 'Django', 'Django REST Framework']},
+        {'name': "Ma'lumotlar bazasi", 'icon': 'fa fa-database', 'skills': ['PostgreSQL', 'MSSQL', 'SQLite']},
+        {'name': 'Real-time', 'icon': 'fa fa-bolt', 'skills': ['WebSocket', 'Celery', 'Django Channels', 'Redis']},
+        {'name': 'Frontend', 'icon': 'fa fa-palette', 'skills': ['HTML5', 'CSS3', 'Django Templates']},
+        {'name': 'DevOps / CI/CD', 'icon': 'fab fa-docker', 'skills': ['Docker', 'Docker Compose', 'GitHub Actions', 'Bash']},
+        {'name': 'Telegram Bot', 'icon': 'fab fa-telegram', 'skills': ['Python', 'Aiogram 3']},
+        {'name': 'AI / ML', 'icon': 'fa fa-brain', 'skills': ['NumPy', 'OpenAI API (GPT-4)']},
+        {'name': 'Versiya nazorati', 'icon': 'fab fa-git-alt', 'skills': ['Git', 'GitHub', 'GitLab']},
+        {'name': 'Sinov', 'icon': 'fa fa-vial', 'skills': ['Postman', 'Swagger', 'Pytest']},
+    ]
+    return render(request, 'resume.html', {'skill_categories': skill_categories})
 

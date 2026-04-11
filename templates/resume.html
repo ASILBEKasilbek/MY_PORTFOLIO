@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume – Asilbek Sadullayev</title>
+  <meta name="description" content="Asilbek Sadullayev – Backend Python Developer resume">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{fontFamily:{inter:["Inter","sans-serif"]}}}}</script>
+
+  <style>
+    *{scroll-behavior:smooth}
+    body{font-family:"Inter",sans-serif;background:#0a0f1e;color:#e2e8f0;overflow-x:hidden}
+    .grad-text{background:linear-gradient(135deg,#6366f1,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .glass{background:rgba(15,23,42,.75);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(99,102,241,.18)}
+    .nav-bg{background:rgba(10,15,30,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(99,102,241,.12)}
+    .nav-link{position:relative;color:#94a3b8;transition:color .3s}
+    .nav-link::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:linear-gradient(90deg,#6366f1,#8b5cf6);transition:width .3s;border-radius:999px}
+    .nav-link:hover{color:#e2e8f0}
+    .nav-link:hover::after{width:100%}
+    .btn-p{background:linear-gradient(135deg,#6366f1,#8b5cf6);transition:transform .2s,box-shadow .2s,filter .2s}
+    .btn-p:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(99,102,241,.45);filter:brightness(1.1)}
+    .blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1;animation:blobAnim 10s ease-in-out infinite;pointer-events:none}
+    @keyframes blobAnim{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-30px) scale(1.08)}66%{transform:translate(-24px,18px) scale(.92)}}
+    .sdiv{width:56px;height:3px;background:linear-gradient(90deg,#6366f1,#8b5cf6,#ec4899);border-radius:999px}
+    .section-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc;font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;letter-spacing:.5px;text-transform:uppercase}
+    .tag{background:rgba(99,102,241,.12);color:#a5b4fc;border:1px solid rgba(99,102,241,.25);padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500;transition:background .2s;display:inline-block}
+    .tag:hover{background:rgba(99,102,241,.25)}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.on{opacity:1;transform:translateY(0)}
+    .card{background:rgba(15,23,42,.8);border:1px solid rgba(99,102,241,.15);backdrop-filter:blur(16px);border-radius:20px;transition:border-color .3s,box-shadow .3s}
+    .card:hover{border-color:rgba(99,102,241,.35);box-shadow:0 16px 40px rgba(99,102,241,.12)}
+    .timeline-dot{width:14px;height:14px;background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:50%;flex-shrink:0;box-shadow:0 0 0 3px rgba(99,102,241,.2);margin-top:4px}
+    .timeline-line{width:2px;background:linear-gradient(to bottom,#6366f1,rgba(99,102,241,.1));flex-shrink:0;margin-left:6px}
+    .skill-bar-wrap{background:rgba(99,102,241,.1);border-radius:999px;height:6px;overflow:hidden}
+    .skill-bar-fill{height:100%;background:linear-gradient(90deg,#6366f1,#8b5cf6,#ec4899);border-radius:999px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+    .soc{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.95);border:1px solid rgba(99,102,241,.22);color:#94a3b8;font-size:16px;transition:all .3s;text-decoration:none}
+    .soc:hover{background:linear-gradient(135deg,#6366f1,#8b5cf6);border-color:transparent;color:#fff;transform:translateY(-4px);box-shadow:0 10px 24px rgba(99,102,241,.35)}
+    .print-btn{display:none}
+    @media print{
+      .no-print{display:none!important}
+      body{background:#fff;color:#111}
+      .glass,.card{background:#fff;border:1px solid #ddd;box-shadow:none!important;backdrop-filter:none}
+      .grad-text{-webkit-text-fill-color:#3730a3;background:none}
+      .sdiv{background:#3730a3}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BLOBS -->
+  <div class="blob w-96 h-96 bg-indigo-600 top-20 -left-32 -z-10" style="position:fixed"></div>
+  <div class="blob w-96 h-96 bg-purple-600 bottom-20 -right-32 -z-10" style="position:fixed;animation-delay:4s"></div>
+
+  <!-- NAV -->
+  <nav class="nav-bg fixed top-0 w-full z-50 no-print">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="text-lg font-bold grad-text">Asilbek</a>
+      <div class="flex items-center gap-6">
+        <a href="/" class="nav-link text-sm font-medium"><i class="fa fa-home mr-1"></i>Bosh sahifa</a>
+        <a href="/#projects" class="nav-link text-sm font-medium">Loyihalar</a>
+        <a href="/#contact" class="nav-link text-sm font-medium">Aloqa</a>
+        <a href="{% static 'files/resume.pdf' %}" download="Asilbek_Sadullayev_Resume.pdf"
+           class="btn-p text-white text-sm font-semibold px-4 py-2 rounded-xl flex items-center gap-2">
+          <i class="fa fa-download"></i> Yuklab olish
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-16 px-6 text-center relative">
+    <div class="max-w-3xl mx-auto">
+      <span class="section-badge mb-4"><i class="fa fa-file-alt"></i> Resume</span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold mt-4 mb-3">
+        <span class="grad-text">Asilbek Sadullayev</span>
+      </h1>
+      <p class="text-indigo-400 font-semibold text-lg mb-2">Backend Python Developer</p>
+      <div class="flex flex-wrap justify-center gap-4 text-gray-400 text-sm mt-4">
+        <span class="flex items-center gap-1"><i class="fa fa-map-marker-alt text-indigo-400"></i> Toshkent, O'zbekiston</span>
+        <a href="tel:+998888648807" class="flex items-center gap-1 hover:text-indigo-400 transition"><i class="fa fa-phone text-indigo-400"></i> +998 88 864 88 07</a>
+        <a href="mailto:asilbek.sadullayev000@gmail.com" class="flex items-center gap-1 hover:text-indigo-400 transition"><i class="fa fa-envelope text-indigo-400"></i> asilbek.sadullayev000@gmail.com</a>
+        <a href="https://github.com/ASILBEKasilbek" target="_blank" class="flex items-center gap-1 hover:text-indigo-400 transition"><i class="fab fa-github text-indigo-400"></i> github.com/ASILBEKasilbek</a>
+      </div>
+      <div class="flex justify-center gap-3 mt-6 no-print">
+        <a href="https://github.com/ASILBEKasilbek" target="_blank" class="soc"><i class="fab fa-github"></i></a>
+        <a href="mailto:asilbek.sadullayev000@gmail.com" class="soc"><i class="fa fa-envelope"></i></a>
+        <a href="tel:+998888648807" class="soc"><i class="fa fa-phone"></i></a>
+        <a href="https://t.me/ASILBEKasilbek" target="_blank" class="soc"><i class="fab fa-telegram"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-5xl mx-auto px-6 pb-24 space-y-10">
+
+    <!-- EDUCATION -->
+    <div class="reveal card p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg">
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold">Ta'lim</h2>
+          <div class="sdiv mt-1"></div>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="timeline-dot mt-1"></div>
+        <div>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h3 class="font-bold text-white text-lg">PDP Universitet – Toshkent</h3>
+            <span class="tag text-xs">2024 – 2025</span>
+          </div>
+          <p class="text-indigo-400 font-medium mt-1">Level-2 Software Developer dasturi</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="reveal card p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg">
+          <i class="fa fa-briefcase"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold">Ish Tajribasi</h2>
+          <div class="sdiv mt-1"></div>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+
+        <!-- Job 1 -->
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line flex-1 mt-2"></div>
+          </div>
+          <div class="flex-1 pb-8">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-bold text-white text-lg">Backend Python Dasturchi</h3>
+                <p class="text-indigo-400 font-medium">Freelance / Startup</p>
+              </div>
+              <span class="tag text-xs">Mart 2026 – hozirgacha</span>
+            </div>
+
+            <!-- Lifegram -->
+            <div class="glass rounded-2xl p-5 mb-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-indigo-400 flex-shrink-0"></span>
+                <h4 class="font-semibold text-indigo-300">Lifegram.uz — Shaxsiy hayot arxivi va video diary platformasi</h4>
+                <span class="tag text-xs ml-auto">Web · Mobile · Telegram Bot</span>
+              </div>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Django 5 + Django REST Framework asosida scalable REST API arxitekturasi yaratildi; PostgreSQL, Redis, Celery va Django Channels real-time aloqa uchun integratsiya qilindi.</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Aiogram 3 yordamida Telegram bot ishlab chiqildi: tez post yaratish, calendar boshqaruvi va AI analytics funksiyalari.</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Mijoz tomonida zero-knowledge shifrlash (AES-256-GCM) joriy etildi — server hech qachon asl video kontentga kirish imkoniga ega emas.</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> JWT + Refresh Token, 2FA (TOTP), OAuth 2.0 (Google, GitHub, Apple) va Stripe billing/obuna tizimi to'liq amalga oshirildi.</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Docker, Docker Compose va GitHub Actions CI/CD orqali production infratuzilmasi sozlandi va avtomatlashtirildi.</li>
+                <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Murakkab muhandislik muammolari yechildi: kriptografiya, real-time bildirishnomalar, offline sync va OpenAI GPT-4 asosida AI analytics pipeline.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="tag">Django 5</span><span class="tag">DRF</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+                <span class="tag">Celery</span><span class="tag">Aiogram 3</span><span class="tag">Docker</span><span class="tag">OpenAI GPT-4</span>
+              </div>
+            </div>
+
+            <!-- Chetel -->
+            <div class="glass rounded-2xl p-5">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="w-2 h-2 rounded-full bg-purple-400 flex-shrink-0"></span>
+                <h4 class="font-semibold text-purple-300">Chetel Telegram Bot — Chet elda ta'lim platformasi</h4>
+              </div>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li class="flex gap-2"><span class="text-purple-400 mt-0.5">→</span> Aiogram 3.4 asinxron arxitekturasi va SQLAlchemy 2.0 ORM bilan 9 ta relatsion jadval loyihalashtirildi.</li>
+                <li class="flex gap-2"><span class="text-purple-400 mt-0.5">→</span> 6 ta middleware qatlam (Logging, Database, Auth, Block, Subscription, Tariff) va 50+ holatli FSM qurildi.</li>
+                <li class="flex gap-2"><span class="text-purple-400 mt-0.5">→</span> 3 tilda to'liq qo'llab-quvvatlash (o'zbek, rus, ingliz), dinamik admin panel, manual to'lov tasdiqlash va tarif limitlarini boshqarish tizimi.</li>
+                <li class="flex gap-2"><span class="text-purple-400 mt-0.5">→</span> <strong class="text-white">500 real faol foydalanuvchiga</strong> yetkazildi.</li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-4">
+                <span class="tag">Aiogram 3</span><span class="tag">SQLAlchemy 2.0</span><span class="tag">FSM</span><span class="tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 2: Teaching Assistant -->
+        <div class="flex gap-4">
+          <div class="timeline-dot"></div>
+          <div class="flex-1">
+            <div class="flex flex-wrap items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="font-bold text-white text-lg">O'quv yordamchisi (Teaching Assistant)</h3>
+                <p class="text-indigo-400 font-medium">PDP Universitet, Toshkent</p>
+              </div>
+              <span class="tag text-xs">2024 – 2025</span>
+            </div>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Talabalar uchun dars va laboratoriya mashg'ulotlarida murakkab texnik mavzularni tushuntirish.</li>
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Amaliy mashg'ulotlarda o'rtoqlarga dasturlash ko'nikmalarini rivojlantirishda ko'maklashish.</li>
+              <li class="flex gap-2"><span class="text-indigo-400 mt-0.5">→</span> Guruh loyihalarida jamoaga yo'naltiruvchi fikr-mulohaza va kod ko'rib chiqish (code review) berish.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="reveal card p-8">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg">
+          <i class="fa fa-code"></i>
+        </div>
+        <div>
+          <h2 class="text-xl font-bold">Texnik Ko'nikmalar</h2>
+          <div class="sdiv mt-1"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+        {% for category in skill_categories %}
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <i class="{{ category.icon }} text-indigo-400 text-sm"></i>
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">{{ category.name }}</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {% for skill in category.skills %}
+            <span class="tag">{{ skill }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+    <!-- LANGUAGES & INTERESTS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal">
+
+      <div class="card p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <i class="fa fa-language"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold">Tillar</h2>
+            <div class="sdiv mt-1"></div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-300 font-medium">O'zbek tili</span>
+              <span class="text-indigo-400 font-semibold">Ona tili</span>
+            </div>
+            <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="100"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span class="text-gray-300 font-medium">Ingliz tili</span>
+              <span class="text-indigo-400 font-semibold">B2 Upper-Intermediate</span>
+            </div>
+            <div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <i class="fa fa-heart"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-bold">Qiziqishlar</h2>
+            <div class="sdiv mt-1"></div>
+          </div>
+        </div>
+        <div class="space-y-3 text-sm text-gray-300">
+          <div class="flex items-center gap-2"><i class="fa fa-book text-indigo-400 w-4"></i> Texnologiya va arxitektura bo'yicha kitob o'qish</div>
+          <div class="flex items-center gap-2"><i class="fa fa-pen-to-square text-indigo-400 w-4"></i> Texnik blog yozish va hujjatlar tayyorlash</div>
+          <div class="flex items-center gap-2"><i class="fab fa-github text-indigo-400 w-4"></i> Open-source loyihalarda ishtirok etish</div>
+          <div class="flex items-center gap-2"><i class="fa fa-futbol text-indigo-400 w-4"></i> Futbol va shaxmat</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- DOWNLOAD CTA -->
+    <div class="reveal text-center py-8 no-print">
+      <p class="text-gray-400 text-sm mb-4">Resumeni PDF formatda yuklab oling</p>
+      <a href="{% static 'files/resume.pdf' %}" download="Asilbek_Sadullayev_Resume.pdf"
+         class="btn-p inline-flex items-center gap-2 text-white font-semibold px-8 py-3 rounded-2xl text-sm">
+        <i class="fa fa-download"></i> PDF Yuklab olish
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-indigo-500/10 py-6 text-center text-gray-500 text-sm no-print">
+    <p>© 2026 Asilbek Sadullayev · <a href="/" class="hover:text-indigo-400 transition">Portfolio</a></p>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Skill bars animate when visible
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+          barObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.card').forEach(el => barObs.observe(el));
+  </script>
+</body>
+</html>

@@ -77,16 +77,20 @@ class SkillsAdmin(admin.ModelAdmin):
 
 @admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "short_message", "is_read", "created_at")
+    list_display = ("name", "phone", "short_message", "is_read", "created_at")
     list_filter = ("is_read", "created_at")
-    search_fields = ("name", "email", "message")
-    readonly_fields = ("name", "email", "message", "created_at")
+    search_fields = ("name", "phone", "message")
+    readonly_fields = ("name", "phone", "message", "created_at")
     list_editable = ("is_read",)
     actions = ["mark_as_read"]
 
     def short_message(self, obj):
         return obj.message[:60] + "..." if len(obj.message) > 60 else obj.message
     short_message.short_description = "Xabar"
+
+    def phone(self, obj):
+        return obj.phone
+    phone.short_description = "Telefon"
 
     @admin.action(description="O'qilgan deb belgilash")
     def mark_as_read(self, request, queryset):

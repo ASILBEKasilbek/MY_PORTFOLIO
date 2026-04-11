@@ -55,7 +55,7 @@ class SiteSettings(models.Model):
     linkedin_url = models.URLField(blank=True, default="https://www.linkedin.com/in/asilbek-sadullayev-4066a3333/")
     telegram_url = models.URLField(blank=True, default="https://t.me/dasturch1_asilbek")
     upwork_url = models.URLField(blank=True, default="https://www.upwork.com/freelancers/~01b6f006f65cc81bac")
-    instagram_url = models.URLField(blank=True, default="https://instagram.com/new_digital_world_uz")
+    instagram_url = models.URLField(blank=True, default="https://instagram.com/asilbek_.dev")
 
     # Resume/CV
     resume_file = models.FileField(upload_to='site/', blank=True, null=True, verbose_name="CV/Resume fayl")
@@ -107,13 +107,13 @@ class Skills(models.Model):
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    phone = models.CharField(max_length=20)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} - {self.email}"
+        return f"{self.name} - {self.phone}"
 
     class Meta:
         verbose_name = "Xabar"
