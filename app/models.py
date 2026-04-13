@@ -118,4 +118,35 @@ class ContactMessage(models.Model):
     class Meta:
         verbose_name = "Xabar"
         verbose_name_plural = "Xabarlar"
+
+
+class Order(models.Model):
+    STATUS_CHOICES = [
+        ('new', 'Yangi'),
+        ('approved', 'Tasdiqlangan'),
+        ('assembling', 'Yig\'ilmoqda'),
+        ('shipped', 'Yuborilgan'),
+        ('delivered', 'Yetkazilgan'),
+        ('cancelled', 'Bekor qilingan'),
+    ]
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=30)
+    email = models.EmailField(blank=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='new')
+    city = models.CharField(max_length=100, blank=True)
+    utm_source = models.CharField(max_length=100, blank=True)
+    total_price = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    items_count = models.PositiveIntegerField(default=1)
+    product_names = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} — {self.total_price} ₸"
+
+    class Meta:
+        verbose_name = "Buyurtma"
+        verbose_name_plural = "Buyurtmalar"
+        ordering = ['-created_at']
         ordering = ['-created_at']

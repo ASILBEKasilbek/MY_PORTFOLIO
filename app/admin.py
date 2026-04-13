@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Project, Skills, ContactMessage, SiteSettings
+from .models import Project, Skills, ContactMessage, SiteSettings, Order
 
 
 @admin.register(SiteSettings)
@@ -96,4 +96,21 @@ class ContactMessageAdmin(admin.ModelAdmin):
     def mark_as_read(self, request, queryset):
         queryset.update(is_read=True)
 
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'full_name', 'phone', 'city', 'utm_source', 'colored_price', 'items_count', 'status', 'created_at')
+    list_filter = ('status', 'utm_source', 'city', 'created_at')
+    search_fields = ('first_name', 'last_name', 'phone', 'email')
+    readonly_fields = ('created_at',)
+    ordering = ('-created_at',)
+
+    def full_name(self, obj):
+        return f"{obj.first_name} {obj.last_name}"
+    full_name.short_description = "Mijoz"
+
+    def colored_price(self, obj):
+        color = "#f59e0b" if obj.total_price > 50000 else "#34d399"
+        return format_html('<span style="color:{};font-weight:600;">{:,.0f} ₸</span>', color, obj.total_price)
+    colored_price.short_description = "Summa"
 
