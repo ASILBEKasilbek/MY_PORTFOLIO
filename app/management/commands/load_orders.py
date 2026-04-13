@@ -16,7 +16,7 @@ from django.core.management.base import BaseCommand
 from app.models import Order
 
 
-MOCK_FILE = Path(settings.BASE_DIR) / 'gbc-analytics-dashboard' / 'mock_orders.json'
+MOCK_FILE = Path(settings.BASE_DIR) / 'mock_orders.json'
 
 
 def _send_telegram(order):
