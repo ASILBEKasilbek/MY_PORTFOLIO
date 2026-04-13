@@ -16,6 +16,9 @@ passport_orqa.jpg
 venv/
 .env
 
+# Shaxsiy ma'lumotlar
+muhim_malumotlar/
+
 # IDE / Editor
 .vscode/
 .idea/
